@@ -121,6 +121,8 @@ def build_ui() -> gr.Blocks:
     return demo
 
 
+warm_up()
+demo = build_ui()
+
 if __name__ == "__main__":
-    warm_up()
-    build_ui().launch()
+    demo.launch()
