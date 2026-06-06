@@ -1,14 +1,3 @@
----
-title: LLM Book Recommender
-emoji: 📚
-colorFrom: blue
-colorTo: purple
-sdk: gradio
-sdk_version: 5.25.2
-app_file: app.py
-pinned: false
----
-
 # LLM Book Recommender
 
 Semantic book search over ~7,000 titles — describe what you want in plain English and get ranked recommendations.
@@ -26,6 +15,32 @@ Semantic book search over ~7,000 titles — describe what you want in plain Engl
 - Book descriptions are embedded with `all-MiniLM-L6-v2` and indexed in Chroma.
 - A natural-language query runs similarity search; results map back to catalog rows via ISBN.
 - A Gradio app serves the live demo on Hugging Face Spaces.
+
+```mermaid
+flowchart TB
+    subgraph OFFLINE["Offline indexing (scripts/build_index.py)"]
+        A[Kaggle 7k Books dataset] --> B[cleaned_books.csv<br/>~5k rows after EDA]
+        B --> C[tagged_description.txt<br/>isbn13 + description per line]
+        C --> D[HuggingFaceEmbeddings<br/>all-MiniLM-L6-v2 → 384-d vectors]
+        D --> E[(Chroma vector store<br/>chroma_db/ persisted on disk)]
+    end
+
+    subgraph ONLINE["Online query path (app.py → app/retrieval.py)"]
+        F[User query in Gradio UI] --> G[Embed query with same model]
+        G --> H[Chroma similarity_search_with_score<br/>top-k ANN over description vectors]
+        H --> I[Parse isbn13 from match metadata]
+        I --> J[Join to cleaned_books.csv<br/>title, authors, rating, cover]
+        J --> K[Ranked book cards + distance score]
+    end
+
+    E -.pre-built index loaded once<br/>functools.lru_cache.-> H
+```
+
+**Architecture notes (interview-ready):**
+- **Retrieval type:** dense semantic search — meaning-based, not keyword/BM25.
+- **Join key:** `isbn13` links vector documents back to structured catalog rows (no LLM generation at query time).
+- **Cold start:** index is pre-built and committed; the Space skips re-embedding ~5k books on every deploy.
+- **Trade-off:** fast CPU inference with a small bi-encoder; no cross-encoder re-ranking (natural extension for SDE2+).
 
 ## Quick start
 
