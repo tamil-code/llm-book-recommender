@@ -6,9 +6,9 @@ Semantic book search over ~7,000 titles — describe what you want in plain Engl
 
 ## Demo
 
-[![Watch the demo](docs/demo-poster.png)](https://github.com/tamil-code/llm-book-recommender/releases/download/demo/LLM.Book.Recommender.mp4)
+![LLM Book Recommender demo](docs/demo.gif)
 
-**[▶ Watch demo video](https://github.com/tamil-code/llm-book-recommender/releases/download/demo/LLM.Book.Recommender.mp4)** — semantic search over motivation, mystery, and fantasy queries.
+*Loops automatically — semantic search over motivation, mystery, and fantasy queries. [Full HD video →](https://github.com/tamil-code/llm-book-recommender/releases/download/demo/LLM.Book.Recommender.mp4)*
 
 ## How it works
 
