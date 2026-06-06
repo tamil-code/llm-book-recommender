@@ -22,3 +22,15 @@ env/
 
 # Local-only full export (use pyproject.toml / uv.lock instead)
 requirements.txt
+
+# Root-level video (committed copy lives at docs/demo.mp4)
+LLM Book Recommender.mp4
+
+# Demo recording tooling (superseded by docs/demo.mp4)
+.demo_deps/
+.playwright-browsers/
+docs/raw/
+docs/DEMO_SCRIPT.md
+scripts/make_demo.sh
+scripts/postprocess_demo.py
+scripts/record_demo.py
