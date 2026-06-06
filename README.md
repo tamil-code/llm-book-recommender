@@ -15,7 +15,7 @@ Semantic book search over ~7,000 titles — describe what you want in plain Engl
 
 **Live demo → [huggingface.co/spaces/tamilbharathiaishitter/llm-book-recommender](https://huggingface.co/spaces/tamilbharathiaishitter/llm-book-recommender)**
 
-<video src="docs/demo.mp4" controls width="100%" style="max-width: 960px; border-radius: 12px;"></video>
+<video src="docs/LLM Book Recommender.mp4" controls width="100%" style="max-width: 960px; border-radius: 12px;"></video>
 
 ## How it works
 
