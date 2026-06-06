@@ -18,22 +18,22 @@ Semantic book search over ~7,000 titles — describe what you want in plain Engl
 
 ```mermaid
 flowchart TB
-    subgraph OFFLINE["Offline indexing (scripts/build_index.py)"]
-        A[Kaggle 7k Books dataset] --> B[cleaned_books.csv<br/>~5k rows after EDA]
-        B --> C[tagged_description.txt<br/>isbn13 + description per line]
-        C --> D[HuggingFaceEmbeddings<br/>all-MiniLM-L6-v2 → 384-d vectors]
-        D --> E[(Chroma vector store<br/>chroma_db/ persisted on disk)]
+    subgraph OFFLINE["Offline indexing - build_index.py"]
+        A[Kaggle 7k Books dataset] --> B["cleaned_books.csv (~5k rows)"]
+        B --> C["tagged_description.txt (isbn13 + description)"]
+        C --> D["HuggingFaceEmbeddings - MiniLM-L6-v2 (384-d)"]
+        D --> E[("Chroma vector store - chroma_db/")]
     end
 
-    subgraph ONLINE["Online query path (app.py → app/retrieval.py)"]
+    subgraph ONLINE["Online query - app.py and retrieval.py"]
         F[User query in Gradio UI] --> G[Embed query with same model]
-        G --> H[Chroma similarity_search_with_score<br/>top-k ANN over description vectors]
+        G --> H["similarity_search_with_score (top-k ANN)"]
         H --> I[Parse isbn13 from match metadata]
-        I --> J[Join to cleaned_books.csv<br/>title, authors, rating, cover]
+        I --> J["Join cleaned_books.csv (title, rating, cover)"]
         J --> K[Ranked book cards + distance score]
     end
 
-    E -.pre-built index loaded once<br/>functools.lru_cache.-> H
+    E -.->|pre-built index, lru_cache| H
 ```
 
 **Architecture notes (interview-ready):**
