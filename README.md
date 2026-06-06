@@ -40,7 +40,7 @@ flowchart TB
 - **Retrieval type:** dense semantic search — meaning-based, not keyword/BM25.
 - **Join key:** `isbn13` links vector documents back to structured catalog rows (no LLM generation at query time).
 - **Cold start:** index is pre-built and committed; the Space skips re-embedding ~5k books on every deploy.
-- **Trade-off:** fast CPU inference with a small bi-encoder; no cross-encoder re-ranking (natural extension for SDE2+).
+- **Trade-off:** fast CPU inference with a small bi-encoder; no cross-encoder re-ranking.
 
 ## Quick start
 
