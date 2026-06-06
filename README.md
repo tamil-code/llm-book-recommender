@@ -15,7 +15,11 @@ Semantic book search over ~7,000 titles — describe what you want in plain Engl
 
 **Live demo → [huggingface.co/spaces/tamilbharathiaishitter/llm-book-recommender](https://huggingface.co/spaces/tamilbharathiaishitter/llm-book-recommender)**
 
-<video src="docs/LLM Book Recommender.mp4" controls width="100%" style="max-width: 960px; border-radius: 12px;"></video>
+## Demo
+
+[![Watch the demo](docs/demo-poster.png)](https://github.com/tamil-code/llm-book-recommender/releases/download/demo/LLM.Book.Recommender.mp4)
+
+**[▶ Watch demo video](https://github.com/tamil-code/llm-book-recommender/releases/download/demo/LLM.Book.Recommender.mp4)** — semantic search over motivation, mystery, and fantasy queries.
 
 ## How it works
 
